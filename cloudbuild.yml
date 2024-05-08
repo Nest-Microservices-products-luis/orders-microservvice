@@ -4,17 +4,17 @@ steps:
   args:
     - -c
     - |
-      docker build -t XXXXXX-docker.pkg.dev/project/image-registry/image-name -f dockerfile.prod --platform=linux/amd64 --build-arg ORDERS_DATABASE_URL=$$DATABASE_URL .
+      docker build -t southamerica-west1-docker.pkg.dev/tienda-microservice/image-registry/orders-ms -f dockerfile.prod --platform=linux/amd64 --build-arg ORDERS_DATABASE_URL=$$DATABASE_URL .
   secretEnv: ['DATABASE_URL']
 
 - name: 'gcr.io/cloud-builders/docker'
   args:
     [
       'push',
-      'XXXXXX-docker.pkg.dev/project/image-registry/image-name',
+      'southamerica-west1-docker.pkg.dev/tienda-microservice/image-registry/orders-ms',
     ]
 
 availableSecrets:
   secretManager:
-  - versionName: projects/367390259998/secrets/orders_database_url/versions/1
+  - versionName: projects/630979415973/secrets/ORDERS_DATABASE_URL/versions/1
     env: 'DATABASE_URL'
